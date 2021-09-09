@@ -51,7 +51,8 @@ class App extends React.Component {
         q: query,
       },
     });
-    console.log(response.data);
+
+    this.setState({ photos: response.data });
   }
 
   getShoppingList = async (location) => {
@@ -82,6 +83,15 @@ class App extends React.Component {
             <button type="submit">Search</button>
           </div>
         </form>
+
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+          {this.state.photos && this.state.photos.map(photo => (
+            <div style={{ width: '200px' }}>
+              <h3>By {photo.photographer}</h3>
+              <img src={photo.img_url} style={{ width: '100%' }} />
+            </div>
+          ))}
+        </div>
 
         {this.state.shoppingList &&
           <ul>
