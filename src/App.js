@@ -88,7 +88,7 @@ class App extends React.Component {
           {this.state.photos && this.state.photos.map(photo => (
             <div style={{ width: '200px' }}>
               <h3>By {photo.photographer}</h3>
-              <img src={photo.img_url} style={{ width: '100%' }} />
+              <img src={photo.img_url} style={{ width: '100%' }} alt="" />
             </div>
           ))}
         </div>
