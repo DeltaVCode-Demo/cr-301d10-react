@@ -42,7 +42,17 @@ class App extends React.Component {
     this.setState({ location });
 
     this.getShoppingList(location);
+    this.getPhotos(q);
   };
+
+  getPhotos = async (query) => {
+    const response = await axios.get(`${apiUrl}/photo`, {
+      params: {
+        q: query,
+      },
+    });
+    console.log(response.data);
+  }
 
   getShoppingList = async (location) => {
     const response = await axios.get(`${apiUrl}/shoppingList`, {
