@@ -41,11 +41,17 @@ class App extends React.Component {
     const location = response.data[0];
     this.setState({ location });
 
-    this.getShoppingList();
+    this.getShoppingList(location);
   };
 
-  getShoppingList = async () => {
-    let response = await axios.get(`${apiUrl}/shoppingList`);
+  getShoppingList = async (location) => {
+    const response = await axios.get(`${apiUrl}/shoppingList`, {
+      // Send some query parameters to Express
+      params: {
+        lat: location.lat,
+        lon: location.lon,
+      },
+    });
     console.log(response);
 
     this.setState({
@@ -83,7 +89,10 @@ class App extends React.Component {
           <>
             <h2>Search: {this.state.q}</h2>
             {this.state.location ?
-              <p>Display Name: {this.state.location.display_name}</p>
+              <p>
+                Display Name: {this.state.location.display_name}
+                ({this.state.location.lat},{this.state.location.lon})
+              </p>
               : <p>Loading...</p>
             }
           </>
