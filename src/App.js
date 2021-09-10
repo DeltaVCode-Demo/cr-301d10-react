@@ -93,17 +93,7 @@ class App extends React.Component {
           ))}
         </div>
 
-        {this.state.shoppingList &&
-          <ul>
-            {this.state.shoppingList.map(
-              (shoppingListItem, index) => (
-                <li key={index}>
-                  {shoppingListItem}
-                </li>
-              )
-            )}
-          </ul>
-        }
+        <ShoppingList list={this.state.shoppingList} />
 
         {this.state.q &&
           <>
